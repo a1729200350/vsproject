@@ -1,0 +1,50 @@
+# Visual Studio
+.vs/
+CppProperties.json
+C++核心编程/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+Debug/
+Release/
+x64/
+x86/
+out/
+build/
+.vscode/
+
+# Compiled Object files
+*.sbr
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.iobj
+*.ipdb
+*.tlog
+*.lastbuildstate
+*.log
+
+# Compiled Dynamic libraries
+*.dll
+*.exe
+*.pdb
+*.lib
+*.exp
+
+# NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
