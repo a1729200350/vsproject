@@ -76,7 +76,7 @@ bool isSame(Cube &c1, Cube &c2)			//用& 引用方式传递 避免拷贝 使用原始数据
 	return false;
 
 }
-int main()
+int main6()
 {
 	//创建立方体对象
 	Cube c1;
@@ -93,11 +93,11 @@ int main()
 	bool ret = isSame(c1, c2);
 	if (ret)
 	{
-		cout << "c1、c2两个立方体相等" << endl;
+		cout << "成员函数判断出：c1、c2两个立方体相等" << endl;
 	}
 	else
 	{
-		cout << "c1、c2两个立方体不相等" << endl;
+		cout << "成员函数判断出：c1、c2两个立方体不相等" << endl;
 	}
 	//利用成员函数判断
 	ret = c1.isSameByClass(c2);
