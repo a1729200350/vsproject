@@ -50,7 +50,7 @@ public:	//公共权限
 		m_ID = ID;
 	}
 };
-int main()
+int main2()
 {
 	//Students s1;
 	//cout << "请输入学生姓名" << endl;
