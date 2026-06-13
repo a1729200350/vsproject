@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="04.2对象的初始化和清理.vcxproj" />
+  <Project Path="04.2对象的初始化和清理.vcxproj" Id="14968359-3b71-4482-8134-c2467616787e" />
 </Solution>
