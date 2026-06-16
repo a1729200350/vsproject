@@ -1,52 +1,52 @@
 #include <iostream>
 #include<string>
 using namespace std;
-class MyInteger
+class MyInteger31
 {
-	friend ostream& operator<<(ostream& cout, const MyInteger& myint);
+	friend ostream& operator<<(ostream& cout, const MyInteger31& myint);
 
 public:
-	MyInteger()
+	MyInteger31()
 	{
 		m_Num = 0;
 	}
-	MyInteger& operator--()
+	MyInteger31& operator--()
 	{
 		m_Num--;
 		return *this;
 	}
-	MyInteger operator--(int)
+	MyInteger31 operator--(int)
 	{
-		MyInteger temp = *this;
+		MyInteger31 temp = *this;
 		m_Num--;
 		return temp;
 	}
 private:
 	int m_Num;
 };
-ostream& operator<<(ostream & cout, const MyInteger& myint)
+ostream& operator<<(ostream & cout, const MyInteger31& myint)
 {
 	cout << myint.m_Num;
 	return cout;
 }
-void test01()
+void test0311()
 {
-	MyInteger myint;
+	MyInteger31 myint;
 	cout << myint-- << endl;
 	cout << myint << endl;
 }
 
-void test02()
+void test0312()
 {
-	MyInteger myint;
+	MyInteger31 myint;
 	cout << --(--myint) << endl;
 	cout << myint << endl;
 }
-int main()
+int main31()
 {
 
-	test01();
-	test02();
+	test0311();
+	test0312();
 	system("pause");
 	return 0;
 }
