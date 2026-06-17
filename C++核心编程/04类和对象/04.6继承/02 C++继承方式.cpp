@@ -3,7 +3,7 @@
 using namespace std;
 //继承方式
 //公共继承
-class Base31
+class Base21
 {
 public:
 	int m_A;
@@ -12,7 +12,7 @@ protected:
 private:
 	int m_C;
 };
-class Son1 :public Base31
+class Son21 :public Base21
 {
 public:
 	void func()
@@ -22,14 +22,14 @@ public:
 		//m_C = 10;//父类中的私有权限成员  子类访问不到
 	}
 };
-void test031()
+void test021()
 {
-	Son1 s1;
+	Son21 s1;
 	s1.m_A = 100;
 	//s1.m_B = 100;  //到Son1中 m_B是保护权限 类外访问不到
 }
 //保护继承
-class Base32
+class Base22
 {
 public:
 	int m_A;
@@ -38,7 +38,7 @@ protected:
 private:
 	int m_C;
 };
-class Son32 :protected Base32
+class Son22 :protected Base22
 {
 public:
 	void func()
@@ -48,14 +48,14 @@ public:
 		//m_C = 100;  //父类中的私有成员 子类访问不到
 	}
 };
-void test032()
+void test022()
 {
-	Son32 s2;
+	Son22 s2;
 	//s2.m_A = 100;	//在Son2中 m_A变为保护权限 ，因此类外访问不到
 	//s2.m_B = 100;  //到Son2中 m_B是保护权限 类外访问不到
 }
 //私有继承
-class Base33
+class Base23
 {
 public:
 	int m_A;
@@ -64,7 +64,7 @@ protected:
 private:
 	int m_C;
 };
-class Son33 :private Base33
+class Son23 :private Base23
 {
 public:
 	void func()
@@ -74,13 +74,13 @@ public:
 		//m_C = 100;		//父类中私有成员，子类访问不到
 	}
 };
-void test033()
+void test023()
 {
-	Son33 s3;
+	Son23 s3;
 	//s3.m_A = 1000;//到Son3 中变为私有成员 类外访问不到
 	//s3.m_B = 1000;//到Son3 中变为私有成员 类外访问不到
 }
-class GrandSon33 :public Son33
+class GrandSon23 :public Son23
 {
 public:
 	void func()
@@ -89,7 +89,7 @@ public:
 		//m_A = 1000;//到了Son3中 m_A变为私有，即使是儿子 也访问不到
 	}
 };
-int main3()
+int main2()
 {
 
 	system("pause");
