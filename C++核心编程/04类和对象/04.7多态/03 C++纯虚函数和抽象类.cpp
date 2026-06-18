@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 //纯虚函数和抽象类
-class Base
+class Base3
 {
 public:
 	//纯虚函数
@@ -12,7 +12,7 @@ public:
 	//2、抽象类子类必须要重写父类中的纯虚函数 否则也属于抽象类
 	virtual void func() = 0;
 };
-class Son:public Base
+class Son3:public Base3
 {
 public:
 	void func() 
@@ -20,17 +20,17 @@ public:
 		cout << "func函数调用" << endl;
 	};
 };
-void test01()
+void test031()
 {
 	//Base b;//抽象类无法实例化对象
 	//new Base;//抽象类无法实例化对象
 	//Son s;  //子类必须重写父类中的虚函数，否则无法实例化对象
-	Base* base = new Son;
+	Base3* base = new Son3;
 	base->func();
 }
-int main()
+int main3()
 {
-	test01();
+	test031();
 	system("pause");
 	return 0;
 }
