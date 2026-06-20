@@ -1,9 +1,43 @@
 #include"workerManager.h"
 WorkerManager::WorkerManager()
 {
-	//初始化属性
-	this->m_EmpNum = 0;
-	this->m_EmpArray = NULL;
+	//1、文件不存在
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);//读文件
+	if (!ifs.is_open())
+	{
+		cout << "文件不存在" << endl;
+		//初始化属性
+		//初始化记录人数
+		this->m_EmpNum = 0;
+		//初始化数组指针
+		this->m_EmpArray = NULL;
+		//初始化文件是否为空
+		this->m_FileIsEmpty = true;
+		ifs.close();
+		return;
+	}
+	//2、文件存在，但数据为空
+	char ch;
+	ifs >> ch;
+	if (ifs.eof())
+	{
+		//文件为空
+		cout << "文件为空！" << endl;
+		//初始化属性
+		//初始化记录人数
+		this->m_EmpNum = 0;
+		//初始化数组指针
+		this->m_EmpArray = NULL;
+		//初始化文件是否为空
+		this->m_FileIsEmpty = true;
+		ifs.close();
+		return;
+	}
+	//3、文件存在，并且记录数据
+	int num = this->get_EmpNum();
+	cout << "职工人数为：" << num << endl;
+	this->m_EmpNum = num;
 }
 //展示菜单
 void WorkerManager::Show_Menu()
@@ -90,15 +124,59 @@ void WorkerManager::Add_Emp()
 		this->m_EmpArray = newSpace;
 		//更新新的职工人数
 		this->m_EmpNum = newSize;
+		//更新职工不为空标志
+		this->m_FileIsEmpty = false;
+		
 		//提示添加成功
+		
 		cout << "成功添加" << addNum << "名新职工" << endl;
+		//保存数据到文件中
+		this->save();
 	}
 	else
 	{
 		cout << "输入数据有误" << endl;
 	}
+	//按任意键后 清屏回到上级目录
+	system("pause");
+	system("cls");
+}
+//保存文件
+void WorkerManager::save()
+{
+	ofstream ofs;
+	ofs.open(FILENAME, ios::out);//用输出的方式打开文件  --写文件
+	//将每个人数据写道文件中
+	for (int i = 0;i < this->m_EmpNum;i++)
+	{
+		ofs << this->m_EmpArray[i]->m_Id << " "
+			<< this->m_EmpArray[i]->m_Name << " "
+			<< this->m_EmpArray[i]->m_DeptId << endl;
+	}
+	//关闭文件
+	ofs.close();
+}
+//统计文件中人数
+int WorkerManager::get_EmpNum()
+{
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);//打开文件  读
+	int id;
+	string name;
+	int dId;
+	int num=0;
+	while (ifs >> id && ifs >> name && ifs >> dId)
+	{
+		//统计人数变量
+		num++;
+	}
+	return num;
 }
 WorkerManager::~WorkerManager()
 {
-
+	if (this->m_EmpArray != NULL)
+	{
+		delete[]this->m_EmpArray;
+		this->m_EmpArray = NULL;
+	}
 }
