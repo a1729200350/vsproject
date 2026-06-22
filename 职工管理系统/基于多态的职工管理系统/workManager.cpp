@@ -23,7 +23,7 @@ WorkerManager::WorkerManager()
 	if (ifs.eof())
 	{
 		//文件为空
-		cout << "文件为空！" << endl;
+		//cout << "文件为空！" << endl;
 		//初始化属性
 		//初始化记录人数
 		this->m_EmpNum = 0;
@@ -118,7 +118,7 @@ void WorkerManager::Add_Emp()
 						}
 					}
 				}
-				// 检查是否与本次已添加的新职工重复（在当前循环之前添加的）
+				// 检查是否与本次已添加的新职工重复
 				if (!isDuplicate)
 				{
 					for (int j = 0; j < i; j++)  // j < i 表示已加入 newSpace 的新职工
@@ -152,16 +152,18 @@ void WorkerManager::Add_Emp()
 			switch (dSelect)
 			{
 			case 1:
-				worker = new Employee(id, name, 1);
+				worker = new Employee(id, name, dSelect);
 				break;
 			case 2:
-				worker = new Manager(id, name, 2);
+				worker = new Manager(id, name, dSelect);
 				break;
 			case 3:
-				worker = new Boss(id, name, 3);
+				worker = new Boss(id, name, dSelect);
 				break;
 			default:
-				break;
+				cout << "岗位选择错误，请重新输入当前职工信息！" << endl;
+				i--;        // 让本次循环重新执行
+				continue;   // 跳过后面的存储操作，重新输入
 			}
 			//将创建职工指针，保存到数组中
 			newSpace[this->m_EmpNum + i] = worker;
@@ -288,6 +290,7 @@ void WorkerManager::Del_Emp()
 		int index = this->IsExist(id);
 		if (index != -1)//说明职工存在，并且要删除掉index位置上的职工
 		{
+			delete this->m_EmpArray[index];   // 释放被删职工对象
 			//数据迁移
 			for (int i = index;i < this->m_EmpNum - 1;i++)
 			{
@@ -343,27 +346,42 @@ void WorkerManager::Mod_Emp()
 			string newName = "";
 			int dSelect = 0;
 			cout << "查到：" << id << "号职工，请输入新职工号：" << endl;
-			cin >> newId;
+			//职工编号重复检查
+			while(true)
+			{
+				cin >> newId;
+				if (newId == id || this->IsExist(newId) == -1)
+				{
+					break;
+				}
+				cout << "输入有误，请重新输入"<<endl;
+			}
 			cout << "请输入新姓名：" << endl;
 			cin >> newName;
 			cout << "请输入岗位：" << endl;
 			cout << "1、普通职工" << endl;
 			cout << "2、经理" << endl;
 			cout << "3、老板" << endl;
-			cin >> dSelect;
+			
 			Worker* worker = NULL;
-			switch (dSelect)
+			while(true)
 			{
-			case 1:
-				worker = new Employee(newId, newName, dSelect);
-				break;
-			case 2:
-				worker = new Manager(newId, newName, dSelect);
-				break;
-			case 3:
-				worker = new Boss(newId, newName, dSelect);
-				break;
-			default:
+				cin >> dSelect;
+				switch (dSelect)
+				{
+				case 1:
+					worker = new Employee(newId, newName, dSelect);
+					break;
+				case 2:
+					worker = new Manager(newId, newName, dSelect);
+					break;
+				case 3:
+					worker = new Boss(newId, newName, dSelect);
+					break;
+				default:
+					cout << "岗位选择错误，请重新输入岗位代号！" << endl;
+					continue;   // 跳过后面的存储操作，重新输入
+				}
 				break;
 			}
 			//更新数据 到数组中
@@ -385,7 +403,7 @@ void WorkerManager::Find_Emp()
 {
 	if (this->m_FileIsEmpty)
 	{
-		cout << "文件不错在或记录为空" << endl;
+		cout << "文件不存在或记录为空" << endl;
 	}
 	else
 	{
@@ -446,10 +464,99 @@ void WorkerManager::Find_Emp()
 	system("pause");
 	system("cls");
 }
+//按照职工编号排序
+void WorkerManager::Sort_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在" << endl;
+		system("pause");
+		system("cls");
+	}
+	else
+	{
+		cout << "请选择排序方式：" << endl;
+		cout << "1、请按职工号进行升序" << endl;
+		cout << "2、请按职工号进行降序" << endl;
+
+		int select = 0;
+		cin >> select;
+		for (int i = 0; i < m_EmpNum; i++)
+		{
+			int	MinOrMax = i;//声明最小值 或最大值下标
+			for(int j = i+1;j<this->m_EmpNum;j++)
+			{
+				if (select == 1)//升序
+				{
+					if (this->m_EmpArray[MinOrMax]->m_Id > this->m_EmpArray[j]->m_Id)
+					{
+						MinOrMax = j;
+					}
+				}
+				else   //降序
+				{
+					if (this->m_EmpArray[MinOrMax]->m_Id < this->m_EmpArray[j]->m_Id)
+					{
+						MinOrMax = j;
+					}
+				}
+			}
+			//判断一开始认定 最小值或最大值 是不是计算的最小值或最大值  如果不是 交换数据
+			if (i != MinOrMax)
+			{
+				Worker* temp = this->m_EmpArray[i];
+				this->m_EmpArray[i] = this->m_EmpArray[MinOrMax];
+				this->m_EmpArray[MinOrMax] = temp;
+			}
+		}
+		cout << "排序成功！排序后的结果为： " << endl;
+		this->save();//排序后结果保存到文件中
+		this->Show_Emp();//展示所有职工
+	}
+}
+//清空文件
+void WorkerManager::Clean_File()
+{
+	cout << "确定清空？" << endl;
+	cout << "1、确定" << endl;
+	cout << "2、返回" << endl;
+	int select = 0;
+	cin >> select;
+	if (select == 1)
+	{
+		//清空文件
+		ofstream ofs(FILENAME, ios::trunc);//删除文件后重新创建
+		ofs.close();
+		if(this->m_EmpArray!=NULL)
+		{
+			//删除堆区的每个职工对象
+			for (int i = 0;i < this->m_EmpNum;i++)
+			{
+				delete this->m_EmpArray[i];
+				this->m_EmpArray[i] = NULL;
+			}
+			//删除堆区数组指针
+			delete[] this->m_EmpArray;
+			this->m_EmpArray = NULL;
+			this->m_EmpNum = 0;
+			this->m_FileIsEmpty = true;
+		}
+		cout << "清空成功！" << endl;
+	}
+	system("pause");
+	system("cls");
+}
 WorkerManager::~WorkerManager()
 {
 	if (this->m_EmpArray != NULL)
 	{
+		for (int i = 0;i < this->m_EmpNum;i++)
+		{
+			if (this->m_EmpArray[i] != NULL)
+			{
+				delete this->m_EmpArray[i];
+			}
+		}
 		delete[]this->m_EmpArray;
 		this->m_EmpArray = NULL;
 	}
