@@ -3,15 +3,15 @@
 using namespace std;
 //类模板对象做函数参数
 template <class T1,class T2>
-class Person
+class Person4
 {
 public:
-	Person(T1 name, T2 age)
+	Person4(T1 name, T2 age)
 	{
 		this->m_name = name;
 		this->m_Age = age;
 	}
-	void showPerson()
+	void showPerson4()
 	{
 		cout << "姓名： " << this->m_name << " 年龄：" << this->m_Age << endl;
 	}
@@ -19,46 +19,46 @@ public:
 	T2 m_Age;
 };
 //1、指定传入类型
-void printPerson1(Person<string, int>&p)
+void printPerson14(Person4<string, int>&p)
 {
-	p.showPerson();
+	p.showPerson4();
 }
-void test01()
+void test014()
 {
-	Person<string, int>p("孙悟空", 100);
-	printPerson1(p);
+	Person4<string, int>p("孙悟空", 100);
+	printPerson14(p);
 }
 //2、参数模板化
 template<class T1,class T2>
-void printPerson2(Person<T1,T2>&p)
+void printPerson24(Person4<T1,T2>&p)
 {
-	p.showPerson();
+	p.showPerson4();
 	cout << "T1的类型为：" << typeid(T1).name() << endl;
 	cout << "T2的类型为：" << typeid(T2).name() << endl;
 }
-void test02()
+void test024()
 {
-	Person<string, int>p("猪八戒", 90);
-	printPerson2(p);
+	Person4<string, int>p("猪八戒", 90);
+	printPerson24(p);
 }
 //3、整个类模板化
 template <class T>
-void printPerson3(T&p)
+void printPerson34(T&p)
 {
-	p.showPerson();
+	p.showPerson4();
 	cout << "T的类型为：" << typeid(T).name() << endl;
 }
-void test03()
+void test034()
 {
-	Person<string, int>p("唐僧", 30);
+	Person4<string, int>p("唐僧", 30);
 
-	printPerson3(p);
+	printPerson34(p);
 }
-int main()
+int main4()
 {
-	test01();
-	test02();
-	test03();
+	test014();
+	test024();
+	test034();
 	system("pause");
 	return 0;
 }
