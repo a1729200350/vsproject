@@ -4,11 +4,11 @@
 #include<algorithm>//标准算法头文件
 using namespace std;
 //vector容器存放内置数据类型
-void myPrint(int val)
+void myPrint1(int val)
 {
 	cout << val << endl;
 }
-void test01()
+void test011()
 {
 	//创建了一个vector容器，数组
 	vector<int> v ;
@@ -33,11 +33,11 @@ void test01()
 
 	//}
 	//第三种遍历方式  利用STL提供遍历算法
-	for_each(v.begin(),v.end(),myPrint);
-}
-int main()
+	for_each(v.begin(),v.end(),myPrint1);
+} 
+int main1()
 {
-	test01();
+	test011();
 	system("pause");
 	return 0;
 }
