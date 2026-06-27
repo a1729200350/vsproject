@@ -11,7 +11,7 @@ using namespace std;
 	string& append=(const string &s);					//同operator+=(const string& str);	
 	string& append=(const string &s,int pos,int n);		//字符串s中从pos开始的那个字符连接到字符串结尾
 */
-void test01()
+void test031()
 {
 	string str1 = "我";
 	str1 += "爱玩游戏";
@@ -38,9 +38,9 @@ void test01()
 	str3.append(str2, 4, 3);//只截取DNF，参数2 从哪个位置开始截取 ，参数3 截取字符个数
 	cout << "str3=" << str3 << endl;
 }
-int main()
+int main3()
 {
-	test01();
+	test031();
 	system("pause");
 	return 0;
 }
