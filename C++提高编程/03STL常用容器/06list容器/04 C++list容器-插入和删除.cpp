@@ -16,7 +16,7 @@ using namespace std;
 	-erase(pos);										//删除pos位置的数据，返回下一个数据的位置
 	-remove(elem);										//删除容器中所有与elem值匹配的元素
 */
-void printList(const list<int>& l)
+void printList4(const list<int>& l)
 {
 	for (list<int>::const_iterator it = l.begin();it != l.end();it++)
 	{
@@ -24,7 +24,7 @@ void printList(const list<int>& l)
 	}
 	cout << endl;
 }
-void test01()
+void test041()
 {
 	list<int>L;
 	//尾插
@@ -37,41 +37,41 @@ void test01()
 	L.push_front(200);
 	L.push_front(300);
 	//300 200 100 10 20 30 40
-	printList(L);
+	printList4(L);
 	//尾删
 	L.pop_back();
 	//300 200 100 10 20 30 
-	printList(L);
+	printList4(L);
 	//头删
 	L.pop_front();
 	//200 100 10 20 30 
-	printList(L);
+	printList4(L);
 	//insert插入
 	list<int>::iterator it = L.begin();
 
 	L.insert(++it, 1000);
 	// 200  1000 100 10 20 30 
-	printList(L);
+	printList4(L);
 	//删除
 	it = L.begin();
 	L.erase(++it);
 	//200 100 10 20 30
-	printList(L);
+	printList4(L);
 	//移除
 	L.push_back(10000);
 	L.push_back(10000);
 	L.push_back(10000);
 	L.push_back(10000);
-	printList(L);
+	printList4(L);
 	L.remove(10000);
-	printList(L);
+	printList4(L);
 	//清空
 	L.clear();
-	printList(L);
+	printList4(L);
 }
-int main()
+int main4()
 {
-	test01();
+	test041();
 
 	system("pause");
 	return 0;
