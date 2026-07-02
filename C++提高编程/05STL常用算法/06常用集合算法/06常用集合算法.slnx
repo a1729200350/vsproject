@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="02vector容器.vcxproj" Id="0313ba26-e701-4b5c-9bb7-b49ffb398bdd" />
+  <Project Path="06常用集合算法.vcxproj" />
 </Solution>

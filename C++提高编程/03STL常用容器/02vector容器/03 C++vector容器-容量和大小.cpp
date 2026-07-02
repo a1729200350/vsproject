@@ -34,7 +34,7 @@ void test031()
 	printVector3(v1);//如果重新指定的比原来长了，默认用0填充新的位置
 	//cout << "v1的容量为：" << v1.capacity() << endl;
 	v1.resize(5);
-	printVector3(v1);//如果重新指定的比原来的断了，超出部分会删除掉 
+	printVector3(v1);//如果重新指定的比原来的短了，超出部分会删除掉 
 }
 int main3()
 {

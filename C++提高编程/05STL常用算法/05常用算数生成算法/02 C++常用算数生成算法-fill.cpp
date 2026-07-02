@@ -15,7 +15,7 @@ void test01()
 	vector<int>v;
 	v.resize(10);
 	//后期重新填充
-	fill(v.begin(), v.end()----, 100);
+	fill(v.begin(), v.end(), 100);
 	for_each(v.begin(), v.end(), myPrint);
 	cout << endl;
 }
