@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="02常用查找算法.vcxproj" Id="961d2923-3aff-43e5-89bf-ca2141aaf5dc" />
+  <Project Path="03常用排序算法.vcxproj" />
 </Solution>
