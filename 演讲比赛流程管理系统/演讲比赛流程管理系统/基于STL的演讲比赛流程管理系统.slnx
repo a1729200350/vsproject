@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="演讲比赛流程管理系统.vcxproj" />
+  <Project Path="演讲比赛流程管理系统.vcxproj" Id="83606672-fe1a-4a06-aa68-9f5e56c3bdd6" />
 </Solution>
