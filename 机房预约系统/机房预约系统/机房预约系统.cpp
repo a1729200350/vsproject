@@ -7,6 +7,43 @@
 #include"teacher.h"
 #include"manager.h"
 using namespace std;
+//进入学生子菜单界面
+void studentMenu(Identity*& student)
+{
+	while (true)
+	{
+		//调用学生子菜单
+		student->operMenu();
+		//将父类指针 转为子类指针 调用子类的特有接口
+		Student* stu = (Student*)student;
+		int select = 0;
+		cin >> select;//接收用户选择
+		if (select == 1)//申请预约
+		{
+			stu->applyOrder();
+		}
+		else if (select == 2)//查看自身预约
+		{
+			stu->showMyOrder();
+		}
+		else if (select == 3)//查看所有预约
+		{
+			stu->showAllOrder();
+		}
+		else if (select == 4)//取消预约
+		{
+			stu->cancelOrder();
+		}
+		else //注销登录
+		{
+			delete student;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+	}
+}
 //进入管理员子菜单界面
 void managerMenu(Identity * &manager)
 {
@@ -22,22 +59,22 @@ void managerMenu(Identity * &manager)
 		cin >> select;
 		if (select == 1)//添加账号
 		{
-			cout << "添加账号" << endl;
+			//cout << "添加账号" << endl;
 			man->addPerson();
 		}
 		else if (select == 2)//查看账号
 		{
-			cout << "查看账号" << endl;
+			//cout << "查看账号" << endl;
 			man->showPerson();
 		}
 		else if (select == 3)//查看机房
 		{
-			cout << "查看机房" << endl;
+			//cout << "查看机房" << endl;
 			man->showComputer();
 		}
 		else if (select == 4)//清空预约
 		{
-			cout << "清空预约" << endl;
+			//cout << "清空预约" << endl;
 			man->cleanFile();
 		}
 		else//注销登录
@@ -106,7 +143,7 @@ void LoginIn(string fileName, int type)
 				system("cls");
 				Person = new Student(id, name, pwd);
 				//进入学生身份子菜单
-
+				studentMenu(Person);
 				return;
 			}
 		}
