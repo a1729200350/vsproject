@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<limits>
 using namespace std;
 //身份抽象基类
 class Identity

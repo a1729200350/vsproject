@@ -1,10 +1,10 @@
 #pragma once
 #include<iostream>
 using namespace std;
-//æœºæˆ¿ç±»
+//»ú·¿Àà
 class ComputerRoom
 {
 public:
-	int m_ComId;//æœºæˆ¿Idå·
-	int m_MaxNum;//æœºæˆ¿æœ€å¤§å®¹é‡
+	int m_ComId;//»ú·¿IdºÅ
+	int m_MaxNum;//»ú·¿×î´óÈİÁ¿
 };

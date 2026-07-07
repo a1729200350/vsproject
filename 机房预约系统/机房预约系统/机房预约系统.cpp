@@ -21,6 +21,7 @@ void studentMenu(Identity*& student)
 		if (select == 1)//申请预约
 		{
 			stu->applyOrder();
+
 		}
 		else if (select == 2)//查看自身预约
 		{
@@ -202,7 +203,7 @@ int main()
 		cout << endl;
 		cout << "=====================  欢迎使用机房预约系统  =====================" << endl;
 		cout << endl << "请输入您的身份：" << endl;
-		cout << "\t\t------------------------------------------\n";
+		cout << "\t\t -----------------------------------------\n";
 		cout << "\t\t|                                         |\n";
 		cout << "\t\t|               1.学生代表                |\n";
 		cout << "\t\t|                                         |\n";
@@ -212,7 +213,7 @@ int main()
 		cout << "\t\t|                                         |\n";
 		cout << "\t\t|               0.退    出                |\n";
 		cout << "\t\t|                                         |\n";
-		cout << "\t\t------------------------------------------\n";
+		cout << "\t\t -----------------------------------------\n";
 		cout << "请输入您的选择：" << endl;
 		cin >> select;//接收用户选择
 		switch (select)
