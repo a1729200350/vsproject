@@ -45,6 +45,35 @@ void studentMenu(Identity*& student)
 		}
 	}
 }
+//进入教师子菜单界面
+void teacherMenu(Identity* teacher)
+{
+	while (true)
+	{
+		//调用教师子菜单
+		teacher->operMenu();
+		Teacher* tea = (Teacher*)teacher;
+		int select = 0;//接收用户选择
+		cin >> select;
+		if (select == 1)//查看所有预约
+		{
+			tea->showAllOrder();
+		}
+		else if (select == 2)//审核预约
+		{
+			tea->validOrder();
+		}
+		else
+		{
+			delete teacher;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+	}
+
+}
 //进入管理员子菜单界面
 void managerMenu(Identity * &manager)
 {
@@ -164,7 +193,7 @@ void LoginIn(string fileName, int type)
 				system("cls");
 				Person = new Teacher(id, name, pwd);
 				//进入教师子菜单
-
+				teacherMenu(Person);
 				return;
 			}
 		}
